@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bone County Sheriff's Office</title>
+
+<style>
+body {
+  font-family: "Times New Roman", Georgia, serif;
+  background: #1C713A;
+  margin: 0;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 900px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  font-size: 15px;
+  border-radius: 4px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+textarea.output {
+  min-height: 260px;
+  font-family: Consolas, monospace;
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #1C713A;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #155a2e;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>BONE COUNTY SHERIFF'S OFFICE<br>CANINE DEVELOPMENT REPORT</h2>
+
+<label>Reporting Officer</label>
+<input id="officer" placeholder="John Carter">
+
+<label>Badge Number</label>
+<input id="badge" placeholder="4512">
+
+<label>Rank</label>
+<input id="rank" placeholder="Deputy Sheriff I">
+
+<label>Suspect Name</label>
+<input id="suspect" placeholder="John Doe">
+
+<label>Date & Time</label>
+<input id="datetime" placeholder="DD/MMM/YYYY HH:MM">
+
+<label>Development Details</label>
+<textarea id="details" placeholder="Provide detailed canine deployment and development notes..."></textarea>
+
+<label>Evidence Found</label>
+<textarea id="evidence" placeholder="List all evidence discovered by K9..."></textarea>
+
+<button onclick="generateReport()">Generate Report</button>
+
+<h3 style="margin-top:40px;">Forum Code Output</h3>
+<textarea id="output" class="output" readonly></textarea>
+
+</div>
+
+<script>
+function generateReport() {
+  const officer = document.getElementById("officer").value;
+  const badge = document.getElementById("badge").value;
+  const rank = document.getElementById("rank").value;
+  const suspect = document.getElementById("suspect").value;
+  const details = document.getElementById("details").value;
+  const evidence = document.getElementById("evidence").value;
+  const datetime = document.getElementById("datetime").value || new Date().toLocaleString();
+
+  const bbcode = `[center][size=150][b]BONE COUNTY SHERIFF'S OFFICE[/b][/size][/center]
+[center][b]CANINE DEVELOPMENT REPORT[/b][/center]
+
+[b]Reporting Officer:[/b] ${rank} ${officer}
+[b]Badge Number:[/b] ${badge}
+[b]Date & Time:[/b] ${datetime}
+
+[b]Suspect Name:[/b] ${suspect}
+
+[b]Development Details:[/b]
+${details}
+
+[b]Evidence Found:[/b]
+${evidence}
+
+[i]I hereby declare that the above information is true and accurate to the best of my knowledge.[/i]`;
+
+  document.getElementById("output").value = bbcode;
+}
+</script>
+
+</body>
+</html>
